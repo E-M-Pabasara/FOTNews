@@ -143,7 +143,7 @@ public class SignIn extends AppCompatActivity {
         Toast.makeText(SignIn.this, "Welcome back, " + username + "!", Toast.LENGTH_SHORT).show();
 
         // Navigate to MainActivity
-        Intent intent = new Intent(SignIn.this, MainActivity.class);
+        Intent intent = new Intent(SignIn.this, Dashboard.class);
 
         // Pass user data to MainActivity
         intent.putExtra("username", username);
