@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/carterone"
         android:text="TechTalk"
-        android:textColor="#2E3B4E"
-        android:textSize="40sp"
+        android:textColor="#344955"
+        android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,11 +60,11 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="119dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="Your campus at your fingertips\nTechTalk streams the news that matters,\nanytime, anywhere, instantly."
+            android:text="\nYour campus at your fingertips\nTechTalk streams the news that matters,\nanytime, anywhere, instantly."
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
@@ -80,6 +80,7 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:text="Let's Start"
+            android:textSize="20dp"
             android:textColor="#000000"
             app:cornerRadius="24dp" />
 
