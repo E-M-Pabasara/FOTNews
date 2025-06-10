@@ -246,13 +246,6 @@
               android:scaleType="centerCrop"
               android:src="@drawable/sports" />
 
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:lineSpacingExtra="2dp"
-              android:text="Rugby is place where legends are forged in the heat of the game!\nBrace yourself for an epic showdown in the Inter University Rugby Championship 2024"
-              android:textColor="@android:color/black"
-              android:textSize="14sp" />
         </LinearLayout>
       </com.google.android.material.card.MaterialCardView>
 
@@ -286,14 +279,79 @@
               android:layout_marginBottom="12dp"
               android:contentDescription="Annual Research Symposium"
               android:scaleType="centerCrop"
-              android:src="@drawable/img" />
+              android:src="@drawable/symposiam" />
+
+
+        </LinearLayout>
+      </com.google.android.material.card.MaterialCardView>
+      <!--Pongal Vizha – 2024 card-->
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="16dp"
+          app:cardBackgroundColor="#E8E8E8"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
           <TextView
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="The Annual Research Symposium is a flagship"
+              android:layout_marginBottom="12dp"
+              android:text="Pongal Vizha – 2024"
               android:textColor="@android:color/black"
-              android:textSize="14sp" />
+              android:textSize="20sp"
+              android:textStyle="bold" />
+
+          <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginBottom="12dp"
+              android:contentDescription="Pongal Vizha – 2024"
+              android:scaleType="centerCrop"
+              android:src="@drawable/pongal" />
+
+
+        </LinearLayout>
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="16dp"
+          app:cardBackgroundColor="#E8E8E8"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="12dp"
+              android:text="Diploma in Technology of Waste Management"
+              android:textColor="@android:color/black"
+              android:textSize="20sp"
+              android:textStyle="bold" />
+
+          <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginBottom="12dp"
+              android:contentDescription="Diploma in Technology of Waste Management"
+              android:scaleType="centerCrop"
+              android:src="@drawable/academic" />
+
+
         </LinearLayout>
       </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
