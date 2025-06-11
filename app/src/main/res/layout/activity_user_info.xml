@@ -61,7 +61,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 app:cardCornerRadius="60dp"
                 app:cardElevation="8dp">
 
@@ -78,17 +78,17 @@
 
             <LinearLayout
                 android:id="@+id/userInfoSection"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/userName"
-                    android:layout_width="290dp"
+                    android:layout_width="347dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="User Name : Loading..."
@@ -98,7 +98,7 @@
 
                 <TextView
                     android:id="@+id/userEmail"
-                    android:layout_width="300dp"
+                    android:layout_width="347dp"
                     android:layout_height="wrap_content"
                     android:text="Email : Loading..."
                     android:textColor="#333333"
@@ -111,34 +111,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="32dp"
                 android:orientation="vertical"
                 android:gravity="center">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnEditInfo"
-                    android:layout_width="200dp"
+                    android:layout_width="220dp"
                     android:layout_height="56dp"
                     android:layout_marginBottom="20dp"
                     android:backgroundTint="#FF9800"
-                    android:fontFamily="@font/roboto_boldcondensed"
                     android:text="Edit Information"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_boldcondensed"
                     app:cornerRadius="28dp"
+                    android:textStyle="bold"
                     app:elevation="4dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSignOut"
-                    android:layout_width="204dp"
+                    android:layout_width="220dp"
                     android:layout_height="56dp"
                     android:backgroundTint="#FF9800"
-                    android:fontFamily="@font/roboto_boldcondensed"
                     android:text="Sign Out"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
+                    android:fontFamily="@font/roboto_boldcondensed"
                     android:textStyle="bold"
                     app:cornerRadius="28dp"
                     app:elevation="4dp" />
@@ -217,6 +217,93 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="NO"
+                android:textColor="@android:color/black"
+                android:backgroundTint="#CCCCCC"
+                app:cornerRadius="28dp"
+                android:layout_marginStart="12dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/editInfoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_bottom_sheet_bg"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:elevation="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editUsernameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="User Name"
+            android:layout_marginBottom="16dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editUsernameField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editPasswordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:layout_marginBottom="24dp"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editPasswordField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnOkEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="OK"
+                android:textColor="@android:color/black"
+                android:backgroundTint="#FFD180"
+                app:cornerRadius="28dp"
+                android:layout_marginEnd="12dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancelEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel"
                 android:textColor="@android:color/black"
                 android:backgroundTint="#CCCCCC"
                 app:cornerRadius="28dp"
