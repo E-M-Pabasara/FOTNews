@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout; // Import LinearLayout
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,10 @@ public class UserInfo extends AppCompatActivity {
     private ImageButton backButton;
     private MaterialButton btnEditInfo;
     private MaterialButton btnSignOut;
+    private LinearLayout signOutConfirmationLayout; // Reference to the custom pop-up layout
+    private MaterialButton btnYesSignOut; // Reference to the YES button
+    private MaterialButton btnNoSignOut; // Reference to the NO button
+    private View overlay; // Reference to the dimming overlay
 
     // Firebase
     private DatabaseReference databaseReference;
@@ -42,13 +47,13 @@ public class UserInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_info);
+        setContentView(R.layout.activity_user_info); //
 
-        initializeViews();
+        initializeViews(); // Initializes UI components, including the pop-up layout and its buttons
         initializeFirebase();
         getUserDataFromIntent();
         displayUserData();
-        setupClickListeners();
+        setupClickListeners(); // Sets up click listeners for all buttons, including the pop-up buttons
     }
 
     private void initializeViews() {
@@ -57,6 +62,16 @@ public class UserInfo extends AppCompatActivity {
         backButton = findViewById(R.id.back_button);
         btnEditInfo = findViewById(R.id.btnEditInfo);
         btnSignOut = findViewById(R.id.btnSignOut);
+
+        // Initialize custom pop-up related views
+        signOutConfirmationLayout = findViewById(R.id.signOutConfirmationLayout);
+        btnYesSignOut = findViewById(R.id.btnYesSignOut);
+        btnNoSignOut = findViewById(R.id.btnNoSignOut);
+        overlay = findViewById(R.id.overlay); // Initialize the overlay view
+
+        // Initially hide the confirmation layout and overlay
+        signOutConfirmationLayout.setVisibility(View.GONE);
+        overlay.setVisibility(View.GONE);
     }
 
     private void initializeFirebase() {
@@ -167,11 +182,11 @@ public class UserInfo extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserInfo.this, Dashboard.class); // Changed from onBackPressed()
+                // Modified: Navigate to Dashboard instead of just onBackPressed()
+                Intent intent = new Intent(UserInfo.this, Dashboard.class);
                 startActivity(intent);
             }
         });
-
 
         // Edit Information button
         btnEditInfo.setOnClickListener(new View.OnClickListener() {
@@ -186,11 +201,40 @@ public class UserInfo extends AppCompatActivity {
             }
         });
 
-        // Sign Out button
+        // Sign Out button: Show the custom pop-up and overlay
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signOut();
+                signOutConfirmationLayout.setVisibility(View.VISIBLE);
+                overlay.setVisibility(View.VISIBLE); // Show the overlay
+            }
+        });
+
+        // "YES" button in the custom sign-out confirmation pop-up
+        btnYesSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut(); // Perform actual sign-out
+                signOutConfirmationLayout.setVisibility(View.GONE); // Hide pop-up
+                overlay.setVisibility(View.GONE); // Hide overlay
+            }
+        });
+
+        // "NO" button in the custom sign-out confirmation pop-up
+        btnNoSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOutConfirmationLayout.setVisibility(View.GONE); // Hide pop-up
+                overlay.setVisibility(View.GONE); // Hide overlay
+            }
+        });
+
+        // Optionally, hide pop-up if overlay is clicked
+        overlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOutConfirmationLayout.setVisibility(View.GONE); // Hide pop-up
+                overlay.setVisibility(View.GONE); // Hide overlay
             }
         });
     }
@@ -199,7 +243,7 @@ public class UserInfo extends AppCompatActivity {
         // Clear user session from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
+        editor.clear(); // Clears all data
         editor.apply();
 
         Toast.makeText(this, "Signed out successfully", Toast.LENGTH_SHORT).show();
@@ -210,9 +254,9 @@ public class UserInfo extends AppCompatActivity {
 
     private void redirectToLogin() {
         Intent intent = new Intent(UserInfo.this, SignIn.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clears activity stack
         startActivity(intent);
-        finish();
+        finish(); // Finish current activity
     }
 
     @Override
@@ -221,6 +265,20 @@ public class UserInfo extends AppCompatActivity {
         // Refresh user data when returning to this activity
         if (currentUsername != null) {
             fetchUserDataFromFirebase();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        // If the pop-up is visible, hide it first
+        if (signOutConfirmationLayout.getVisibility() == View.VISIBLE) {
+            signOutConfirmationLayout.setVisibility(View.GONE);
+            overlay.setVisibility(View.GONE); // Hide overlay
+        } else {
+            // Otherwise, proceed with default back button behavior (go to Dashboard)
+            Intent intent = new Intent(UserInfo.this, Dashboard.class);
+            startActivity(intent);
+            super.onBackPressed(); // Call super to ensure proper back stack handling
         }
     }
 }
