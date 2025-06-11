@@ -26,9 +26,11 @@
       app:layout_constraintTop_toTopOf="parent">
 
     <!-- Navigation Bar -->
+
+    <!-- Category Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="46dp"
         android:layout_marginTop="16dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -91,7 +93,6 @@
           app:iconTint="@android:color/black" />
     </LinearLayout>
 
-    <!-- Category Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="54dp"

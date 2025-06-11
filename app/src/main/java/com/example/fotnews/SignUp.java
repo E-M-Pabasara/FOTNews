@@ -1,5 +1,7 @@
 package com.example.fotnews;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -9,8 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +33,7 @@ public class SignUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up); // Replace with your actual layout name
+        setContentView(R.layout.activity_sign_up);
 
         // Initialize Firebase Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -36,7 +42,7 @@ public class SignUp extends AppCompatActivity {
         // Initialize UI components
         initializeViews();
 
-        // Set click listener for sign up button
+        // Set click listener for sign up button - CORRECTED: Only one click listener
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +84,59 @@ public class SignUp extends AppCompatActivity {
         signUpButton.setEnabled(false);
         signUpButton.setText("Creating Account...");
 
+        // First check if username already exists
+        checkUsernameExists(username, email, password);
+    }
+
+    private void checkUsernameExists(String username, String email, String password) {
+        Query usernameQuery = databaseReference.orderByChild("username").equalTo(username);
+
+        usernameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Username already exists
+                    usernameLayout.setError("Username already exists. Please choose another.");
+                    resetButtonState();
+                } else {
+                    // Username is available, now check email
+                    checkEmailExists(username, email, password);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(SignUp.this, "Error checking username: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
+                resetButtonState();
+            }
+        });
+    }
+
+    private void checkEmailExists(String username, String email, String password) {
+        Query emailQuery = databaseReference.orderByChild("email").equalTo(email);
+
+        emailQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Email already exists
+                    emailLayout.setError("Email already registered. Please use another email.");
+                    resetButtonState();
+                } else {
+                    // Both username and email are available, create account
+                    createUserAccount(username, email, password);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(SignUp.this, "Error checking email: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
+                resetButtonState();
+            }
+        });
+    }
+
+    private void createUserAccount(String username, String email, String password) {
         // Create user data map
         Map<String, Object> userData = new HashMap<>();
         userData.put("username", username);
@@ -85,36 +144,52 @@ public class SignUp extends AppCompatActivity {
         userData.put("password", password); // Note: In production, hash the password!
         userData.put("timestamp", System.currentTimeMillis());
 
-        // Generate unique user ID or use email as key
+        // Generate unique user ID
         String userId = databaseReference.push().getKey();
 
         // Save to Firebase Realtime Database
         databaseReference.child(userId).setValue(userData)
                 .addOnSuccessListener(aVoid -> {
-                    // Success
-                    Toast.makeText(SignUp.this,
-                            "Account created successfully!", Toast.LENGTH_SHORT).show();
+                    // Success - Account created
+                    Toast.makeText(SignUp.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
 
-                    // Reset form
-                    clearFields();
+                    // Save user session
+                    saveUserSession(username, email, userId);
 
-                    // Reset button state
-                    signUpButton.setEnabled(true);
-                    signUpButton.setText("Sign Up");
-
-                    // Optional: Navigate to login or main activity
-                    // finish(); // Close this activity
+                    // Navigate to Dashboard with user data
+                    navigateToDashboard(username, email, userId);
                 })
                 .addOnFailureListener(e -> {
-                    // Error
-                    Toast.makeText(SignUp.this,
-                            "Failed to create account: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
-
-                    // Reset button state
-                    signUpButton.setEnabled(true);
-                    signUpButton.setText("Sign Up");
+                    // Error creating account
+                    Toast.makeText(SignUp.this, "Failed to create account: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    resetButtonState();
                 });
+    }
+
+    private void saveUserSession(String username, String email, String userId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", username);
+        editor.putString("email", email);
+        editor.putString("userKey", userId);
+        editor.putBoolean("isLoggedIn", true);
+        editor.apply();
+    }
+
+    private void navigateToDashboard(String username, String email, String userId) {
+        Intent intent = new Intent(SignUp.this, Dashboard.class);
+        intent.putExtra("username", username);
+        intent.putExtra("email", email);
+        intent.putExtra("userKey", userId);
+        intent.putExtra("isLoggedIn", true);
+
+        startActivity(intent);
+        finish(); // Close SignUp activity
+    }
+
+    private void resetButtonState() {
+        signUpButton.setEnabled(true);
+        signUpButton.setText("Sign Up");
     }
 
     private boolean validateInputs(String username, String email, String password, String confirmPassword) {
@@ -126,6 +201,9 @@ public class SignUp extends AppCompatActivity {
             isValid = false;
         } else if (username.length() < 3) {
             usernameLayout.setError("Username must be at least 3 characters");
+            isValid = false;
+        } else if (!username.matches("^[a-zA-Z0-9_]+$")) {
+            usernameLayout.setError("Username can only contain letters, numbers, and underscores");
             isValid = false;
         }
 
