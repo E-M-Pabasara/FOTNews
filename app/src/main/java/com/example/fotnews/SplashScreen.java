@@ -27,16 +27,16 @@ public class SplashScreen extends AppCompatActivity {
             return insets;
         });
 
-        // Find the "Let's Start" button
+
         startButton = findViewById(R.id.start_button);
 
-        // Set click listener to open MainActivity
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SplashScreen.this, SignIn.class);
                 startActivity(intent);
-                finish(); // Optional: close SplashScreen so user can't go back
+                finish();
             }
         });
     }

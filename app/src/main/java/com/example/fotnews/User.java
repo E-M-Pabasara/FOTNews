@@ -6,11 +6,10 @@ public class User {
     private String password;
     private long timestamp;
 
-    // Default constructor required for Firebase
+
     public User() {
     }
 
-    // Constructor with parameters
     public User(String username, String email, String password, long timestamp) {
         this.username = username;
         this.email = email;
@@ -18,7 +17,7 @@ public class User {
         this.timestamp = timestamp;
     }
 
-    // Getters
+
     public String getUsername() {
         return username;
     }
@@ -35,7 +34,7 @@ public class User {
         return timestamp;
     }
 
-    // Setters
+
     public void setUsername(String username) {
         this.username = username;
     }

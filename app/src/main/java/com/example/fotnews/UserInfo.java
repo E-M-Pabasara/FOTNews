@@ -31,7 +31,6 @@ public class UserInfo extends AppCompatActivity {
 
     private static final String TAG = "UserInfoActivity";
 
-    // UI Components
     private TextView userName;
     private TextView userEmail;
     private ImageButton backButton;
@@ -42,7 +41,6 @@ public class UserInfo extends AppCompatActivity {
     private MaterialButton btnNoSignOut;
     private View overlay;
 
-    // New UI components for Edit Pop-up
     private LinearLayout editInfoLayout;
     private TextInputEditText editUsernameField;
     private TextInputEditText editPasswordField;
@@ -51,10 +49,8 @@ public class UserInfo extends AppCompatActivity {
     private MaterialButton btnOkEdit;
     private MaterialButton btnCancelEdit;
 
-    // Firebase
     private DatabaseReference databaseReference;
 
-    // User data
     private String currentUsername;
     private String currentEmail;
     private String currentUserKey;
@@ -78,13 +74,13 @@ public class UserInfo extends AppCompatActivity {
         btnEditInfo = findViewById(R.id.btnEditInfo);
         btnSignOut = findViewById(R.id.btnSignOut);
 
-        // Initialize custom sign-out pop-up views
+
         signOutConfirmationLayout = findViewById(R.id.signOutConfirmationLayout);
         btnYesSignOut = findViewById(R.id.btnYesSignOut);
         btnNoSignOut = findViewById(R.id.btnNoSignOut);
         overlay = findViewById(R.id.overlay);
 
-        // Initialize custom edit info pop-up views
+
         editInfoLayout = findViewById(R.id.editInfoLayout);
         editUsernameField = findViewById(R.id.editUsernameField);
         editPasswordField = findViewById(R.id.editPasswordField);
@@ -93,7 +89,7 @@ public class UserInfo extends AppCompatActivity {
         btnOkEdit = findViewById(R.id.btnOkEdit);
         btnCancelEdit = findViewById(R.id.btnCancelEdit);
 
-        // Initially hide both confirmation layouts and overlay
+
         signOutConfirmationLayout.setVisibility(View.GONE);
         editInfoLayout.setVisibility(View.GONE);
         overlay.setVisibility(View.GONE);
@@ -114,12 +110,12 @@ public class UserInfo extends AppCompatActivity {
             Log.d(TAG, "Received user data - Username: " + currentUsername + ", Email: " + currentEmail);
         }
 
-        // If no data from intent, try to get from SharedPreferences (fallback)
+
         if (currentUsername == null || currentEmail == null) {
             getUserDataFromPreferences();
         }
 
-        // If still no data, fetch from Firebase
+
         if (currentUsername == null) {
             Toast.makeText(this, "No user data found. Please login again.", Toast.LENGTH_SHORT).show();
             redirectToLogin();
@@ -135,14 +131,14 @@ public class UserInfo extends AppCompatActivity {
 
     private void displayUserData() {
         if (currentUsername != null && currentEmail != null) {
-            // Display the data we already have
+
             userName.setText("User Name : " + currentUsername);
             userEmail.setText("Email : " + currentEmail);
 
-            // Also save to SharedPreferences for future use
+
             saveUserDataToPreferences();
         } else if (currentUsername != null) {
-            // If we only have username, fetch full data from Firebase
+
             fetchUserDataFromFirebase();
         }
     }
@@ -163,11 +159,11 @@ public class UserInfo extends AppCompatActivity {
                             currentEmail = user.getEmail();
                             currentUserKey = userSnapshot.getKey();
 
-                            // Update UI
+
                             userName.setText("User Name : " + user.getUsername());
                             userEmail.setText("Email : " + user.getEmail());
 
-                            // Save to preferences
+
                             saveUserDataToPreferences();
 
                             Log.d(TAG, "User data fetched successfully from Firebase");
@@ -203,21 +199,21 @@ public class UserInfo extends AppCompatActivity {
     }
 
     private void setupClickListeners() {
-        // Back button
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Modified: Navigate to Dashboard instead of just onBackPressed()
+
                 Intent intent = new Intent(UserInfo.this, Dashboard.class);
                 startActivity(intent);
             }
         });
 
-        // Edit Information button: Show the custom edit pop-up
+
         btnEditInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Populate fields with current data
+
                 editUsernameField.setText(currentUsername);
                 editPasswordField.setText(""); // Password should not be pre-filled for security
 
@@ -226,7 +222,7 @@ public class UserInfo extends AppCompatActivity {
             }
         });
 
-        // Sign Out button: Show the custom sign-out pop-up
+
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -235,26 +231,26 @@ public class UserInfo extends AppCompatActivity {
             }
         });
 
-        // "YES" button in the custom sign-out confirmation pop-up
+
         btnYesSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signOut(); // Perform actual sign-out
-                signOutConfirmationLayout.setVisibility(View.GONE); // Hide pop-up
-                overlay.setVisibility(View.GONE); // Hide overlay
+                signOut();
+                signOutConfirmationLayout.setVisibility(View.GONE);
+                overlay.setVisibility(View.GONE);
             }
         });
 
-        // "NO" button in the custom sign-out confirmation pop-up
+
         btnNoSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signOutConfirmationLayout.setVisibility(View.GONE); // Hide pop-up
-                overlay.setVisibility(View.GONE); // Hide overlay
+                signOutConfirmationLayout.setVisibility(View.GONE);
+                overlay.setVisibility(View.GONE);
             }
         });
 
-        // "OK" button in the custom edit info pop-up
+
         btnOkEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -262,17 +258,17 @@ public class UserInfo extends AppCompatActivity {
             }
         });
 
-        // "Cancel" button in the custom edit info pop-up
+
         btnCancelEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editInfoLayout.setVisibility(View.GONE); // Hide pop-up
-                overlay.setVisibility(View.GONE); // Hide overlay
-                clearEditErrors(); // Clear any errors
+                editInfoLayout.setVisibility(View.GONE);
+                overlay.setVisibility(View.GONE);
+                clearEditErrors();
             }
         });
 
-        // Optionally, hide pop-ups if overlay is clicked
+
         overlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -292,20 +288,20 @@ public class UserInfo extends AppCompatActivity {
         String newUsername = editUsernameField.getText().toString().trim();
         String newPassword = editPasswordField.getText().toString().trim();
 
-        clearEditErrors(); // Clear previous errors
+        clearEditErrors();
 
         if (!validateEditInputs(newUsername, newPassword)) {
             return;
         }
 
-        // Update logic for Firebase
+
         if (currentUserKey != null) {
             DatabaseReference userRef = databaseReference.child(currentUserKey);
             Map<String, Object> updates = new HashMap<>();
 
-            // Check if username changed
+
             if (!newUsername.equals(currentUsername)) {
-                // First, check if the new username already exists
+
                 Query usernameQuery = databaseReference.orderByChild("username").equalTo(newUsername);
                 usernameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -313,7 +309,7 @@ public class UserInfo extends AppCompatActivity {
                         if (dataSnapshot.exists()) {
                             editUsernameLayout.setError("Username already exists.");
                         } else {
-                            // Only update if it's available
+
                             updates.put("username", newUsername);
                             if (!newPassword.isEmpty()) {
                                 updates.put("password", newPassword); // Hash in real app
@@ -328,9 +324,9 @@ public class UserInfo extends AppCompatActivity {
                     }
                 });
             } else {
-                // Username did not change, just update password if provided
+
                 if (!newPassword.isEmpty()) {
-                    updates.put("password", newPassword); // Hash in real app
+                    updates.put("password", newPassword);
                 }
                 applyUpdates(userRef, updates, newUsername, newPassword);
             }
@@ -363,7 +359,7 @@ public class UserInfo extends AppCompatActivity {
                         Toast.makeText(UserInfo.this, "Failed to update user information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         } else {
-            // No changes were made
+
             editInfoLayout.setVisibility(View.GONE);
             overlay.setVisibility(View.GONE);
             clearEditErrors();
@@ -385,7 +381,7 @@ public class UserInfo extends AppCompatActivity {
             isValid = false;
         }
 
-        // Password is optional for update, but if provided, validate length
+
         if (!newPassword.isEmpty() && newPassword.length() < 6) {
             editPasswordLayout.setError("Password must be at least 6 characters (if changing)");
             isValid = false;
@@ -400,15 +396,15 @@ public class UserInfo extends AppCompatActivity {
     }
 
     private void signOut() {
-        // Clear user session from SharedPreferences
+
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear(); // Clears all data
+        editor.clear();
         editor.apply();
 
         Toast.makeText(this, "Signed out successfully", Toast.LENGTH_SHORT).show();
 
-        // Redirect to login screen
+
         redirectToLogin();
     }
 
@@ -416,14 +412,13 @@ public class UserInfo extends AppCompatActivity {
         Intent intent = new Intent(UserInfo.this, SignIn.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clears activity stack
         startActivity(intent);
-        finish(); // Finish current activity
+        finish();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Refresh user data when returning to this activity
-        // This is important if EditProfile activity made changes
+
         if (currentUsername != null) {
             fetchUserDataFromFirebase();
         }
@@ -431,7 +426,7 @@ public class UserInfo extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // If either pop-up is visible, hide it first
+
         if (signOutConfirmationLayout.getVisibility() == View.VISIBLE) {
             signOutConfirmationLayout.setVisibility(View.GONE);
             overlay.setVisibility(View.GONE);
@@ -440,10 +435,10 @@ public class UserInfo extends AppCompatActivity {
             overlay.setVisibility(View.GONE);
             clearEditErrors();
         } else {
-            // Otherwise, proceed with default back button behavior (go to Dashboard)
+
             Intent intent = new Intent(UserInfo.this, Dashboard.class);
             startActivity(intent);
-            finish(); // Finish current activity after navigating
+            finish();
         }
     }
 }

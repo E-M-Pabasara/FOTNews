@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,9 +10,9 @@
 
     <ImageView
         android:id="@+id/logo_icon"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="100dp"
         android:contentDescription="App Logo"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,10 +23,11 @@
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-40dp"
         android:fontFamily="@font/carterone"
         android:text="TechTalk"
         android:textColor="#344955"
-        android:textSize="40dp"
+        android:textSize="60dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +36,9 @@
     <LinearLayout
         android:id="@+id/bottom_container"
         android:layout_width="0dp"
-        android:layout_height="395dp"
+        android:layout_height="400dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/big_shape"
         android:orientation="vertical"
         android:padding="24dp"
@@ -55,32 +58,32 @@
             android:text="\nStay Informed,\nStay Ahead"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="24dp"
             android:textStyle="italic" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="119dp"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/roboto_regular"
             android:text="\nYour campus at your fingertips\nTechTalk streams the news that matters,\nanytime, anywhere, instantly."
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+            android:textSize="17dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/start_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint="#F4A328"
             android:fontFamily="@font/roboto_boldcondensed"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:text="Let's Start"
-            android:textSize="20dp"
+            android:textSize="24dp"
             android:textColor="#000000"
             app:cornerRadius="24dp" />
 
