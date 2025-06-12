@@ -6,11 +6,11 @@ public class News {
     private String imageUrl;
     private String title;
 
-    // Default constructor (required for Firebase)
+
     public News() {
     }
 
-    // Constructor with all parameters
+
     public News(String category, String description, String imageUrl, String title) {
         this.category = category;
         this.description = description;
@@ -18,7 +18,7 @@ public class News {
         this.title = title;
     }
 
-    // Getters
+
     public String getCategory() {
         return category;
     }
@@ -35,7 +35,7 @@ public class News {
         return title;
     }
 
-    // Setters
+
     public void setCategory(String category) {
         this.category = category;
     }

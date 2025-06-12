@@ -40,13 +40,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.titleTextView.setText(news.getTitle());
         holder.descriptionTextView.setText(news.getDescription());
 
-        // Load image using Glide
+
         Glide.with(context)
                 .load(news.getImageUrl())
                 .apply(new RequestOptions()
                         .transform(new RoundedCorners(16))
-                        .placeholder(R.drawable.sports) // Add a placeholder image
-                        .error(R.drawable.sports)) // Add an error image
+                        .placeholder(R.drawable.sports)
+                        .error(R.drawable.sports))
                 .into(holder.newsImageView);
     }
 
