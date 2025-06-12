@@ -40,21 +40,21 @@ public class CategoryNewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_news);
 
-        // Initialize views
+
         recyclerView = findViewById(R.id.recycler_view_news);
         titleTextView = findViewById(R.id.tv_category_title);
         backButton = findViewById(R.id.back_button);
 
-        // Get category from intent
+
         category = getIntent().getStringExtra("category");
         categoryTitle = getIntent().getStringExtra("categoryTitle");
 
-        // Set title
+
         if (categoryTitle != null) {
             titleTextView.setText(categoryTitle);
         }
 
-        // Set up back button
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,16 +62,16 @@ public class CategoryNewsActivity extends AppCompatActivity {
             }
         });
 
-        // Initialize RecyclerView
+
         newsList = new ArrayList<>();
         newsAdapter = new NewsAdapter(this, newsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(newsAdapter);
 
-        // Initialize Firebase
+
         databaseReference = FirebaseDatabase.getInstance().getReference("news");
 
-        // Load news data
+
         loadNewsData();
     }
 
