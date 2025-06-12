@@ -22,12 +22,12 @@ import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
 
-    // UI Components
+
     private TextInputEditText usernameField, emailField, passwordField, confirmPasswordField;
     private TextInputLayout usernameLayout, emailLayout, passwordLayout, confirmPasswordLayout;
     private MaterialButton signUpButton;
 
-    // Firebase
+
     private DatabaseReference databaseReference;
 
     @Override
@@ -35,14 +35,14 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        // Initialize Firebase Database
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("users");
 
-        // Initialize UI components
+
         initializeViews();
 
-        // Set click listener for sign up button - CORRECTED: Only one click listener
+
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,25 +66,25 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void registerUser() {
-        // Get input values
+
         String username = usernameField.getText().toString().trim();
         String email = emailField.getText().toString().trim();
         String password = passwordField.getText().toString().trim();
         String confirmPassword = confirmPasswordField.getText().toString().trim();
 
-        // Clear previous errors
+
         clearErrors();
 
-        // Validate inputs
+
         if (!validateInputs(username, email, password, confirmPassword)) {
             return;
         }
 
-        // Show loading state
+
         signUpButton.setEnabled(false);
         signUpButton.setText("Creating Account...");
 
-        // First check if username already exists
+
         checkUsernameExists(username, email, password);
     }
 
@@ -95,11 +95,11 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // Username already exists
+
                     usernameLayout.setError("Username already exists. Please choose another.");
                     resetButtonState();
                 } else {
-                    // Username is available, now check email
+
                     checkEmailExists(username, email, password);
                 }
             }
@@ -119,11 +119,11 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // Email already exists
+
                     emailLayout.setError("Email already registered. Please use another email.");
                     resetButtonState();
                 } else {
-                    // Both username and email are available, create account
+
                     createUserAccount(username, email, password);
                 }
             }
@@ -137,30 +137,30 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void createUserAccount(String username, String email, String password) {
-        // Create user data map
+
         Map<String, Object> userData = new HashMap<>();
         userData.put("username", username);
         userData.put("email", email);
-        userData.put("password", password); // Note: In production, hash the password!
+        userData.put("password", password);
         userData.put("timestamp", System.currentTimeMillis());
 
-        // Generate unique user ID
+
         String userId = databaseReference.push().getKey();
 
-        // Save to Firebase Realtime Database
+
         databaseReference.child(userId).setValue(userData)
                 .addOnSuccessListener(aVoid -> {
-                    // Success - Account created
+
                     Toast.makeText(SignUp.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
 
-                    // Save user session
+
                     saveUserSession(username, email, userId);
 
-                    // Navigate to Dashboard with user data
+
                     navigateToDashboard(username, email, userId);
                 })
                 .addOnFailureListener(e -> {
-                    // Error creating account
+
                     Toast.makeText(SignUp.this, "Failed to create account: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     resetButtonState();
                 });
@@ -184,7 +184,7 @@ public class SignUp extends AppCompatActivity {
         intent.putExtra("isLoggedIn", true);
 
         startActivity(intent);
-        finish(); // Close SignUp activity
+        finish();
     }
 
     private void resetButtonState() {
@@ -195,7 +195,7 @@ public class SignUp extends AppCompatActivity {
     private boolean validateInputs(String username, String email, String password, String confirmPassword) {
         boolean isValid = true;
 
-        // Validate username
+
         if (TextUtils.isEmpty(username)) {
             usernameLayout.setError("Username is required");
             isValid = false;
@@ -207,7 +207,7 @@ public class SignUp extends AppCompatActivity {
             isValid = false;
         }
 
-        // Validate email
+
         if (TextUtils.isEmpty(email)) {
             emailLayout.setError("Email is required");
             isValid = false;
@@ -216,7 +216,7 @@ public class SignUp extends AppCompatActivity {
             isValid = false;
         }
 
-        // Validate password
+
         if (TextUtils.isEmpty(password)) {
             passwordLayout.setError("Password is required");
             isValid = false;
@@ -225,7 +225,6 @@ public class SignUp extends AppCompatActivity {
             isValid = false;
         }
 
-        // Validate confirm password
         if (TextUtils.isEmpty(confirmPassword)) {
             confirmPasswordLayout.setError("Please confirm your password");
             isValid = false;

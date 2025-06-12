@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,7 +8,6 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <!-- Top Banner -->
     <LinearLayout
         android:id="@+id/topBanner"
         android:layout_width="0dp"
@@ -36,24 +36,22 @@
             android:fontFamily="@font/carterone"
             android:text="Sign Up"
             android:textColor="@android:color/white"
-            android:textSize="50sp"
+            android:textSize="40dp"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- User Name Label -->
     <TextView
         android:id="@+id/labelUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_regular"
         android:text="User Name"
-        android:textSize="16sp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topBanner" />
 
-    <!-- Username Field -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/usernameLayout"
         android:layout_width="0dp"
@@ -71,25 +69,24 @@
             android:id="@+id/usernameField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_regular"
             android:inputType="textPersonName"
             android:paddingStart="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Email Label -->
     <TextView
         android:id="@+id/labelEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Email"
-        android:textSize="16sp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/usernameLayout" />
 
-    <!-- Email Field -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"
         android:layout_width="0dp"
@@ -107,25 +104,24 @@
             android:id="@+id/emailField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_regular"
             android:inputType="textEmailAddress"
             android:paddingStart="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Password Label -->
     <TextView
         android:id="@+id/labelPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Password"
-        android:textSize="16sp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailLayout" />
 
-    <!-- Password Field -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
         android:layout_width="0dp"
@@ -143,25 +139,24 @@
             android:id="@+id/passwordField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_regular"
             android:inputType="textPassword"
             android:paddingStart="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Confirm Password Label -->
     <TextView
         android:id="@+id/labelConfirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Confirmation Password"
-        android:textSize="16sp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordLayout" />
 
-    <!-- Confirm Password Field -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirmPasswordLayout"
         android:layout_width="0dp"
@@ -179,20 +174,21 @@
             android:id="@+id/confirmPasswordField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_regular"
             android:inputType="textPassword"
             android:paddingStart="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Sign Up Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#F9AA33"
         android:text="Sign Up"
+        android:textSize="24dp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         app:cornerRadius="24dp"

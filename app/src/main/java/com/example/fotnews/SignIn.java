@@ -123,11 +123,11 @@ public class SignIn extends AppCompatActivity {
 
                         onLoginSuccess(username, email, userKey);
                     } else {
-                        // Wrong password
+
                         onLoginFailure("Incorrect password");
                     }
                 } else {
-                    // Username not found
+
                     onLoginFailure("Username not found. Please check your username or sign up.");
                 }
             }
@@ -142,34 +142,34 @@ public class SignIn extends AppCompatActivity {
     private void onLoginSuccess(String username, String email, String userKey) {
         Toast.makeText(SignIn.this, "Welcome back, " + username + "!", Toast.LENGTH_SHORT).show();
 
-        // Navigate to MainActivity
+
         Intent intent = new Intent(SignIn.this, Dashboard.class);
 
-        // Pass user data to MainActivity
+
         intent.putExtra("username", username);
         intent.putExtra("email", email);
         intent.putExtra("userKey", userKey);
         intent.putExtra("isLoggedIn", true);
 
         startActivity(intent);
-        finish(); // Close SignIn activity so user can't go back
+        finish();
     }
 
     private void onLoginFailure(String errorMessage) {
         Toast.makeText(SignIn.this, errorMessage, Toast.LENGTH_LONG).show();
 
-        // Reset button state
+
         signInButton.setEnabled(true);
         signInButton.setText("Sign In");
 
-        // Clear password field for security
+
         passwordField.setText("");
     }
 
     private boolean validateInputs(String username, String password) {
         boolean isValid = true;
 
-        // Validate username
+
         if (TextUtils.isEmpty(username)) {
             usernameInputLayout.setError("Username is required");
             isValid = false;
@@ -178,7 +178,7 @@ public class SignIn extends AppCompatActivity {
             isValid = false;
         }
 
-        // Validate password
+
         if (TextUtils.isEmpty(password)) {
             passwordInputLayout.setError("Password is required");
             isValid = false;
@@ -195,9 +195,9 @@ public class SignIn extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Clear any previous errors when user returns to this activity
+
         clearErrors();
-        // Reset button state
+
         signInButton.setEnabled(true);
         signInButton.setText("Sign In");
     }

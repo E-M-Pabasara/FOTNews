@@ -52,7 +52,7 @@
                     android:text="User\nInformation"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:textSize="40sp" />
+                    android:textSize="40dp" />
 
             </LinearLayout>
 
@@ -93,7 +93,7 @@
                     android:layout_marginBottom="16dp"
                     android:text="User Name : Loading..."
                     android:textColor="#333333"
-                    android:textSize="18sp"
+                    android:textSize="20dp"
                     android:textStyle="normal" />
 
                 <TextView
@@ -102,7 +102,8 @@
                     android:layout_height="wrap_content"
                     android:text="Email : Loading..."
                     android:textColor="#333333"
-                    android:textSize="18sp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
                     android:textStyle="normal" />
 
             </LinearLayout>
@@ -111,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="32dp"
                 android:orientation="vertical"
                 android:gravity="center">
@@ -124,10 +125,9 @@
                     android:backgroundTint="#FF9800"
                     android:text="Edit Information"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp"
+                    android:textSize="24dp"
                     android:fontFamily="@font/roboto_boldcondensed"
                     app:cornerRadius="28dp"
-                    android:textStyle="bold"
                     app:elevation="4dp" />
 
                 <com.google.android.material.button.MaterialButton
@@ -137,9 +137,8 @@
                     android:backgroundTint="#FF9800"
                     android:text="Sign Out"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp"
+                    android:textSize="24dp"
                     android:fontFamily="@font/roboto_boldcondensed"
-                    android:textStyle="bold"
                     app:cornerRadius="28dp"
                     app:elevation="4dp" />
 
@@ -177,9 +176,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign Out"
+            android:fontFamily="@font/roboto_black"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#333333"
+            android:textColor="@color/black"
             android:gravity="center_horizontal"
             android:layout_marginBottom="12dp"/>
 
@@ -187,8 +187,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Do you want to sign out?"
-            android:textSize="18sp"
-            android:textColor="#333333"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="20dp"
+            android:textColor="@color/black"
             android:gravity="center_horizontal"
             android:layout_marginBottom="24dp"/>
 
@@ -204,11 +205,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="YES"
+                android:fontFamily="@font/roboto_boldcondensed"
                 android:textColor="@android:color/black"
                 android:backgroundTint="#FFD180"
                 app:cornerRadius="28dp"
                 android:layout_marginEnd="12dp"
-                android:textSize="18sp"
+                android:textSize="24dp"
                 android:textStyle="bold"/>
 
             <com.google.android.material.button.MaterialButton
@@ -217,11 +219,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="NO"
+                android:fontFamily="@font/roboto_boldcondensed"
                 android:textColor="@android:color/black"
                 android:backgroundTint="#CCCCCC"
                 app:cornerRadius="28dp"
                 android:layout_marginStart="12dp"
-                android:textSize="18sp"
+                android:textSize="24dp"
                 android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
@@ -243,9 +246,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit"
-            android:textSize="24sp"
+            android:textSize="24dp"
+            android:fontFamily="@font/roboto_black"
             android:textStyle="bold"
-            android:textColor="#333333"
+            android:textColor="@color/black"
             android:gravity="center_horizontal"
             android:layout_marginBottom="12dp"/>
 
@@ -291,11 +295,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="OK"
+                android:fontFamily="@font/roboto_boldcondensed"
                 android:textColor="@android:color/black"
                 android:backgroundTint="#FFD180"
                 app:cornerRadius="28dp"
                 android:layout_marginEnd="12dp"
-                android:textSize="18sp"
+                android:textSize="24dp"
                 android:textStyle="bold"/>
 
             <com.google.android.material.button.MaterialButton
@@ -304,11 +309,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cancel"
+                android:fontFamily="@font/roboto_boldcondensed"
                 android:textColor="@android:color/black"
                 android:backgroundTint="#CCCCCC"
                 app:cornerRadius="28dp"
                 android:layout_marginStart="12dp"
-                android:textSize="18sp"
+                android:textSize="24dp"
                 android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
