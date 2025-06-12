@@ -45,6 +45,11 @@ public class Dashboard extends AppCompatActivity {
         MaterialButton profileButton = findViewById(R.id.profile_button);
 
 
+        MaterialButton sportsButton = findViewById(R.id.btn_sports);
+        MaterialButton academicButton = findViewById(R.id.btn_academic);
+        MaterialButton eventsButton = findViewById(R.id.btn_events);
+
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +76,39 @@ public class Dashboard extends AppCompatActivity {
                 intent.putExtra("username", currentUsername);
                 intent.putExtra("email", currentEmail);
                 intent.putExtra("userKey", currentUserKey);
+                startActivity(intent);
+            }
+        });
+
+        // Sports category button click
+        sportsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, CategoryNewsActivity.class);
+                intent.putExtra("category", "sports");
+                intent.putExtra("categoryTitle", "Sports");
+                startActivity(intent);
+            }
+        });
+
+        // Academic category button click
+        academicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, CategoryNewsActivity.class);
+                intent.putExtra("category", "academic");
+                intent.putExtra("categoryTitle", "Academic");
+                startActivity(intent);
+            }
+        });
+
+        // Events category button click
+        eventsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, CategoryNewsActivity.class);
+                intent.putExtra("category", "events");
+                intent.putExtra("categoryTitle", "Events");
                 startActivity(intent);
             }
         });
