@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Top Banner -->
+    <LinearLayout
+        android:id="@+id/topBanner"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="59dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="170dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="12dp"
+            android:src="@drawable/arrow_back"
+            app:tint="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/carterone"
+            android:text="Developer\nInformation"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="40sp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profileIcon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/developer"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/CircleImage"
+        app:layout_constraintTop_toBottomOf="@id/topBanner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- Developer Details -->
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name : E.M.Pabasara"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/profileIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"/>
+
+    <TextView
+        android:id="@+id/studentNoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student No : 2022T01560"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/nameText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"/>
+
+    <TextView
+        android:id="@+id/personalStatementText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Personal statement: Undergraduate (UOC | FOT)"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/studentNoText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="24dp" />
+
+    <!-- Exit Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/exitButton"
+        android:layout_width="133dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#F8A61B"
+        android:fontFamily="@font/roboto_boldcondensed"
+        android:textSize="20dp"
+        android:text="Exit"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:cornerRadius="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/personalStatementText" />
+
+
+    <!-- Version Info -->
+    <TextView
+        android:id="@+id/versionInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Release version\nV1.0"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/exitButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
