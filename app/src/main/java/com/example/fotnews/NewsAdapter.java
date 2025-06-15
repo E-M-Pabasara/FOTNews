@@ -38,8 +38,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         News news = newsList.get(position);
 
         holder.titleTextView.setText(news.getTitle());
-        holder.descriptionTextView.setText(news.getDescription());
 
+
+        String description = news.getDescription();
+        if (description != null) {
+            description = description.replace("\\n", "\n");
+        }
+        holder.descriptionTextView.setText(description);
 
         Glide.with(context)
                 .load(news.getImageUrl())
