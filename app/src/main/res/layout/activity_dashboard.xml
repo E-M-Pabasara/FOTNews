@@ -9,6 +9,7 @@
     android:background="#F5F5F5"
     tools:context=".Dashboard">
 
+
   <LinearLayout
       android:id="@+id/header_section"
       android:layout_width="match_parent"
