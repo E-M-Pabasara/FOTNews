@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".Dashboard">
+
+
+  <LinearLayout
+      android:id="@+id/header_section"
+      android:layout_width="match_parent"
+      android:layout_height="200dp"
+      android:background="@drawable/shape"
+      android:orientation="vertical"
+      android:paddingStart="16dp"
+      android:paddingTop="16dp"
+      android:paddingEnd="16dp"
+      android:paddingBottom="32dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+      <ImageButton
+          android:id="@+id/back_button"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:background="?attr/selectableItemBackgroundBorderless"
+          android:contentDescription="Back"
+          android:padding="12dp"
+          android:src="@drawable/arrow_back"
+          app:tint="@android:color/white" />
+
+      <View
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_weight="1" />
+
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/settings_button"
+          android:layout_width="50dp"
+          android:layout_height="48dp"
+          android:layout_gravity="center"
+          android:layout_marginEnd="8dp"
+          android:backgroundTint="#FFA726"
+          android:contentDescription="Settings"
+          android:insetLeft="0dp"
+          android:insetTop="0dp"
+          android:insetRight="0dp"
+          android:insetBottom="0dp"
+          android:padding="0dp"
+          app:cornerRadius="24dp"
+          app:icon="@drawable/settings"
+          app:iconGravity="textStart"
+          app:iconPadding="0dp"
+          app:iconSize="24dp"
+          app:iconTint="@android:color/black" />
+
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/profile_button"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:layout_gravity="center"
+          android:backgroundTint="#FFA726"
+          android:contentDescription="Profile"
+          android:insetLeft="0dp"
+          android:insetTop="0dp"
+          android:insetRight="0dp"
+          android:insetBottom="0dp"
+          android:padding="0dp"
+          app:cornerRadius="24dp"
+          app:icon="@drawable/person"
+          app:iconGravity="textStart"
+          app:iconPadding="0dp"
+          app:iconSize="24dp"
+          app:iconTint="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/btn_sports"
+          android:layout_width="wrap_content"
+          android:layout_height="50dp"
+          android:layout_marginEnd="8dp"
+          android:layout_weight="1"
+          android:backgroundTint="#FFA726"
+          android:text="Sports"
+          android:fontFamily="@font/roboto_boldcondensed"
+          android:textColor="@android:color/black"
+          android:textSize="20dp"
+          app:cornerRadius="24dp" />
+
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/btn_academic"
+          android:layout_width="wrap_content"
+          android:layout_height="50dp"
+          android:layout_marginStart="4dp"
+          android:layout_marginEnd="4dp"
+          android:layout_weight="1"
+          android:backgroundTint="#FFA726"
+          android:text="Academic"
+          android:textColor="@android:color/black"
+          android:textSize="20dp"
+          android:fontFamily="@font/roboto_boldcondensed"
+          app:cornerRadius="24dp" />
+
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/btn_events"
+          android:layout_width="wrap_content"
+          android:layout_height="50dp"
+          android:layout_marginStart="8dp"
+          android:layout_weight="1"
+          android:backgroundTint="#FFA726"
+          android:text="Events"
+          android:fontFamily="@font/roboto_boldcondensed"
+          android:textColor="@android:color/black"
+          android:textSize="20dp"
+          app:cornerRadius="24dp" />
+    </LinearLayout>
+  </LinearLayout>
+
+  <com.google.android.material.card.MaterialCardView
+      android:id="@+id/search_card"
+      android:layout_width="0dp"
+      android:layout_height="50dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="20dp"
+      android:layout_marginEnd="24dp"
+      app:cardBackgroundColor="@android:color/white"
+      app:cardCornerRadius="32dp"
+      app:cardElevation="4dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/header_section">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+      <ImageView
+          android:layout_width="24dp"
+          android:layout_height="24dp"
+          android:contentDescription="Menu"
+          android:src="@drawable/menu"
+          app:tint="#9E9E9E" />
+
+      <EditText
+          android:id="@+id/search_edittext"
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_marginStart="12dp"
+          android:layout_marginEnd="12dp"
+          android:layout_weight="1"
+          android:background="@null"
+          android:gravity="center_vertical"
+          android:hint="Search"
+          android:importantForAutofill="no"
+          android:inputType="text"
+          android:paddingTop="12dp"
+          android:paddingBottom="12dp"
+          android:singleLine="true"
+          android:textColor="@android:color/black"
+          android:textColorHint="#9E9E9E"
+          android:textSize="16sp" />
+
+      <ImageView
+          android:layout_width="24dp"
+          android:layout_height="24dp"
+          android:contentDescription="Search"
+          android:src="@drawable/search"
+          app:tint="#9E9E9E" />
+    </LinearLayout>
+  </com.google.android.material.card.MaterialCardView>
+
+  <ScrollView
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/search_card">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="10dp"
+          android:layout_marginTop="10dp"
+          app:cardBackgroundColor="#E8E8E8"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="12dp"
+              android:text="Inter University Games"
+              android:fontFamily="@font/roboto_black"
+              android:textColor="@android:color/black"
+              android:textSize="24dp" />
+
+          <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginBottom="12dp"
+              android:contentDescription="Inter University Games"
+              android:scaleType="centerCrop"
+              android:src="@drawable/sports" />
+
+        </LinearLayout>
+      </com.google.android.material.card.MaterialCardView>
+
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="16dp"
+          android:layout_marginTop="20dp"
+          app:cardBackgroundColor="#E8E8E8"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="12dp"
+              android:text="Annual Research Symposium"
+              android:fontFamily="@font/roboto_black"
+              android:textColor="@android:color/black"
+              android:textSize="24dp" />
+
+          <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginBottom="12dp"
+              android:contentDescription="Annual Research Symposium"
+              android:scaleType="centerCrop"
+              android:src="@drawable/symposiam" />
+
+
+        </LinearLayout>
+      </com.google.android.material.card.MaterialCardView>
+      <!--Pongal Vizha – 2024 card-->
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="16dp"
+          app:cardBackgroundColor="#E8E8E8"
+          android:layout_marginTop="20dp"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="12dp"
+              android:text="Pongal Vizha – 2024"
+              android:textColor="@android:color/black"
+              android:textSize="24dp"
+              android:fontFamily="@font/roboto_black"/>
+
+          <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginBottom="12dp"
+              android:contentDescription="Pongal Vizha – 2024"
+              android:scaleType="centerCrop"
+              android:src="@drawable/pongal" />
+
+
+        </LinearLayout>
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="16dp"
+          android:layout_marginTop="20dp"
+          app:cardBackgroundColor="#E8E8E8"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="12dp"
+              android:text="Diploma in Technology of Waste Management"
+              android:textColor="@android:color/black"
+              android:textSize="24dp"
+              android:fontFamily="@font/roboto_black" />
+
+          <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginBottom="12dp"
+              android:contentDescription="Diploma in Technology of Waste Management"
+              android:scaleType="centerCrop"
+              android:src="@drawable/academic" />
+
+
+        </LinearLayout>
+      </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+  </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
